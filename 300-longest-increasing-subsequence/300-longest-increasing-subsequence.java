@@ -1,34 +1,41 @@
 class Solution {
     
-    public int memo(int[] nums, int idx, int prev,int[][] dp) {
+    public int lowerBound(ArrayList<Integer> nums, int target) {
+        int lo = 0;
+        int hi = nums.size() -1;
         
-        if(idx == nums.length) return 0;
+        int pa = nums.size();
         
-        if(dp[idx][prev + 1] != -1) return dp[idx][prev + 1];
+        while(lo <= hi) {
+            int mid = lo + (hi-lo)/2;
+            
+            if(nums.get(mid) == target) {
+                return mid;
+            } else if(nums.get(mid) < target) {
+                lo = mid + 1;        
+            } else {
+                pa = mid;
+                hi = mid -1;
+            }
+        }
         
-        int yes = (prev == -1 || nums[idx] > nums[prev]) ? memo(nums,idx + 1,idx,dp) + 1 : 0;
-        
-        int no =  memo(nums,idx + 1,prev,dp);
-        
-        return dp[idx][prev + 1] = Math.max(yes,no);
+        return pa; 
     }
     
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
-        int[] dp = new int[n];
-        int maxLIS = 0;
+        
+        ArrayList<Integer> sorted = new ArrayList<>();
+        
         for(int i=0;i<n;i++) {
-            dp[i] = 1;
-            
-            for(int j=0;j<i;j++) {
-                if(nums[j] < nums[i]) {
-                    dp[i] = Math.max(dp[i],dp[j] + 1);
-                }
+            int lb = lowerBound(sorted,nums[i]);
+            if(lb == sorted.size()) {
+                sorted.add(nums[i]);
+            } else {
+                sorted.set(lb,nums[i]);
             }
-            
-            maxLIS = Math.max(maxLIS,dp[i]);
         }
         
-        return maxLIS;
+        return sorted.size();
     }
 }
