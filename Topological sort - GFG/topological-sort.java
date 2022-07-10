@@ -59,10 +59,21 @@ class Main {
 
 class Solution
 {
-    //Function to return list containing vertices in Topological order. 
-    static int[] topoSort(int n, ArrayList<ArrayList<Integer>> adj) 
-    {
-        // add your code here
+    static int[] topo;
+    static int idx;
+    static void DFS(int src,ArrayList<ArrayList<Integer>> adj,boolean[] vis) {
+        if(vis[src] == true) return;
+        
+        vis[src] = true;
+        
+        for(int nbr : adj.get(src)) {
+            DFS(nbr,adj,vis);
+        }
+        
+        topo[idx--] = src;
+    }
+    
+    static int[] kahns(int n,ArrayList<ArrayList<Integer>> adj) {
         int[] incoming = new int[n];
         
         for(int src=0;src<adj.size();src++) {
@@ -94,5 +105,21 @@ class Solution
         }
         
         return  order;
+    }
+    
+    //Function to return list containing vertices in Topological order. 
+    static int[] topoSort(int n, ArrayList<ArrayList<Integer>> adj) 
+    {
+        // add your code here
+        topo = new int[n];
+        idx = n-1;
+        
+        boolean[] vis = new boolean[n];
+        
+        for(int i=0;i<n;i++) {
+            DFS(i,adj,vis);
+        }
+        
+        return topo;
     }
 }
