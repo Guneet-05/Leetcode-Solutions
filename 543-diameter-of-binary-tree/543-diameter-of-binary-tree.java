@@ -15,26 +15,40 @@
  */
 class Solution {
     
-    static int dia = 0;
-    //calculate dia and return height
-    public int diameter(TreeNode root) {
-        if(root == null) return 0;
+    static class Pair {
+        int h;
+        int dia;
         
-        int lh = diameter(root.left);
-        int rh = diameter(root.right);
+        Pair() {
+            h = 0;
+            dia = 0;
+        }
         
-        int h = Math.max(lh,rh) + 1;
+        Pair(int h, int dia) {
+            this.h = h;
+            this.dia = dia;
+        }
+    }
+    
+    public Pair helper(TreeNode root) {
         
-        dia = Math.max(dia,lh + rh + 1);
+        if(root == null) {
+            Pair p = new Pair();
+            return p;
+        }
         
-        return h;
+        Pair left = helper(root.left);
+        Pair right = helper(root.right);
+        
+        Pair p = new Pair();
+        p.h = Math.max(left.h,right.h) + 1;
+        p.dia = Math.max(left.h + right.h + 1,Math.max(left.dia,right.dia));
+        
+        return p;
     }
     
     public int diameterOfBinaryTree(TreeNode root) {
-        if(root == null) return 0;
-        
-        dia = 0;
-        diameter(root);
-        return dia -1;
+        Pair ans = helper(root);
+        return ans.dia - 1;
     }
 }
