@@ -15,20 +15,26 @@
  */
 class Solution {
     
-    public int height(TreeNode root) {
-        if(root == null) return -1;
+    static int dia = 0;
+    //calculate dia and return height
+    public int diameter(TreeNode root) {
+        if(root == null) return 0;
         
-        return Math.max(height(root.left),height(root.right)) + 1;
+        int lh = diameter(root.left);
+        int rh = diameter(root.right);
+        
+        int h = Math.max(lh,rh) + 1;
+        
+        dia = Math.max(dia,lh + rh + 1);
+        
+        return h;
     }
     
     public int diameterOfBinaryTree(TreeNode root) {
         if(root == null) return 0;
         
-        int leftDia = diameterOfBinaryTree(root.left);
-        int rightDia = diameterOfBinaryTree(root.right);
-        
-        int dia = height(root.left) + height(root.right) + 2;
-        
-        return Math.max(dia,Math.max(leftDia,rightDia));
+        dia = 0;
+        diameter(root);
+        return dia -1;
     }
 }
