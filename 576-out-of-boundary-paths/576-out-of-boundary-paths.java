@@ -2,9 +2,10 @@ class Solution {
     int m = 1000000007;
     public long solve(int sr,int sc, int m, int n,int curr, int max,Long[][][] dp) {
         
-        if((sr < 0 || sc < 0 || sr >= m || sc >= n)) return 1L;
+        if(curr < max && (sr < 0 || sc < 0 || sr >= m || sc >= n)) return 1L;
         
         if(curr == max) {
+            if(sr < 0 || sc < 0 || sr >= m || sc >= n) return 1L;
             return 0L;
         }
         
