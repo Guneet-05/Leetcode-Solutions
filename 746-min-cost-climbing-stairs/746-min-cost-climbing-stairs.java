@@ -1,22 +1,30 @@
 class Solution {
     
-    public int solve(int[] cost,int idx,int[] dp) {
+    public int memo(int[] cost,int idx,int[] dp) {
         
-        if(idx >= cost.length) return 0;
+        if(idx == cost.length) return 0;
         
         if(dp[idx] != -1) return dp[idx];
         
-        int ans1 = cost[idx] + solve(cost,idx + 1,dp);
-        int ans2 = cost[idx] + solve(cost,idx + 2,dp);
+        int ans1 = (idx + 1 <= cost.length) ? cost[idx] + memo(cost,idx + 1,dp) : Integer.MAX_VALUE;
         
-        return dp[idx] = (int)Math.min(ans1,ans2);
+        int ans2 = (idx + 2 <= cost.length) ? cost[idx] + memo(cost,idx + 2,dp) : Integer.MAX_VALUE;
+        
+        return dp[idx] = Math.min(ans1,ans2);
     }
     
     public int minCostClimbingStairs(int[] cost) {
-        int[] dp = new int[cost.length + 1];
-        Arrays.fill(dp,-1);
-        int ans1 = solve(cost,0,dp);
-        int ans2 = solve(cost,1,dp);
-        return (int)Math.min(ans1,ans2);
+        
+        if(cost.length == 0 || cost == null) return 0;
+        int[] dp1 = new int[cost.length + 1];
+        Arrays.fill(dp1,-1);
+        
+        int ans1 = memo(cost,0,dp1);
+        
+        int[] dp2 = new int[cost.length + 1];
+        Arrays.fill(dp2,-1);
+        int ans2 = memo(cost,1,dp2);
+        
+        return Math.min(ans1,ans2);
     }
 }
