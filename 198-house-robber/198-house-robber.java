@@ -1,26 +1,17 @@
 class Solution {
-    
-    public int memo(int[] nums, int idx,int prev,int[][] dp) {
-        
-        if(idx == nums.length) return 0;
-        
-        if(dp[idx][prev] != -1) return dp[idx][prev];
-        
-        int yes = (prev == 0) ? memo(nums,idx + 1,1,dp) + nums[idx] : 0;
-        int no = memo(nums,idx + 1,0,dp);
-        
-        return dp[idx][prev] = Math.max(yes,no);
-    }
-    
     public int rob(int[] nums) {
-        int[][] dp = new int[nums.length + 1][2];
+        if(nums.length == 0 || nums == null) return 0;
         
-        for(int i=0;i<=nums.length;i++) {
-            for(int j=0;j<2;j++) {
-                dp[i][j] = -1;
-            }
+        int[][] dp = new int[2][nums.length];
+        
+        dp[0][0] = 0;
+        dp[1][0] = nums[0];
+        
+        for(int j=1;j<nums.length;j++) {
+            dp[0][j] = Math.max(dp[0][j-1],dp[1][j-1]);
+            dp[1][j] = nums[j] + dp[0][j-1];
         }
         
-        return memo(nums,0,0,dp);
+        return Math.max(dp[0][nums.length-1],dp[1][nums.length-1]);
     }
 }
