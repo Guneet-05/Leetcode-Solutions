@@ -1,31 +1,25 @@
 class Solution {
     
-    public int numberOfDigits(int x) {
-        int nod = 0;
+    public int reverse(int x) {
+        int res = 0;
         
-        while(x > 0) {
-            nod++;
+        while(x != 0) {
+            int digit = x % 10;
             x /= 10;
+            
+            
+            res  = (res * 10) + digit;
+            
         }
         
-        return nod;
+        return res;
     }
     
     public boolean isPalindrome(int x) {
         if(x < 0) return false;
         
-        int temp = x;
-        int p = (int)Math.pow(10,numberOfDigits(x)-1);
-        int ans = 0;
-        
-        while(temp > 0) {
-            int d = temp % 10;
-            temp /= 10;
-            ans += d*p;
-            p /= 10;
-        }
-        
-        if(ans == x) return true;
+        int reverse = reverse(x);
+        if(reverse == x) return true;
         return false;
     }
 }
