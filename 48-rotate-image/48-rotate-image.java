@@ -1,6 +1,7 @@
 class Solution {
     
     public void transpose(int[][] mat) {
+        //traverse only in upper triangle
         for(int i=0;i<mat.length;i++) {
             for(int j=i;j<mat[0].length;j++) {
                 int temp = mat[i][j];
@@ -10,14 +11,15 @@ class Solution {
         }
     }
     
-    public void reverseRow(int[][] mat, int i) {
+    
+    public void reverseRow(int[][] matrix,int i) {
         int lo = 0;
-        int hi = mat[0].length-1;
+        int hi = matrix[0].length -1;
         
         while(lo < hi) {
-            int temp = mat[i][lo];
-            mat[i][lo] = mat[i][hi];
-            mat[i][hi] = temp;
+            int temp = matrix[i][lo];
+            matrix[i][lo] = matrix[i][hi];
+            matrix[i][hi] = temp;
             lo++;
             hi--;
         }
