@@ -1,22 +1,24 @@
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
-        int fr = 0, fc = 0, lr = matrix.length-1, lc = matrix[0].length-1;
-        
-        int count = 0;
-        int n = matrix.length;
-        int m = matrix[0].length;
         List<Integer> list = new ArrayList<>();
         
-        while(count != n * m) {
+        int count = 0;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        
+        int fr = 0, fc = 0, lr = m-1, lc = n-1;
+        
+        while(count != m*n) {
             
             //first row
             for(int j=fc;j<=lc;j++) {
                 list.add(matrix[fr][j]);
                 count++;
             }
+            
             fr++;
             
-            if(count == n * m) break;
+            if(count == m*n) break;
             
             //last col
             for(int i=fr;i<=lr;i++) {
@@ -25,7 +27,7 @@ class Solution {
             }
             lc--;
             
-            if(count == n*m) break;
+            if(count == m*n) break;
             
             //last row
             for(int j=lc;j>=fc;j--) {
@@ -34,7 +36,7 @@ class Solution {
             }
             lr--;
             
-            if(count == n*m) break;
+            if(count == m*n) break;
             
             //first col
             for(int i=lr;i>=fr;i--) {
@@ -43,7 +45,7 @@ class Solution {
             }
             fc++;
             
-            if(count == n*m) break;
+            if(count == m*n) break;
         }
         
         return list;
