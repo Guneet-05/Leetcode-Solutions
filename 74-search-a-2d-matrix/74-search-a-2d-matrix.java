@@ -1,21 +1,17 @@
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-        
         int lo = 0;
-        int hi = rows * cols -1;
+        int hi = matrix.length * matrix[0].length -1;
         
         while(lo <= hi) {
-            int mid = (lo + hi)/2;
+            int mid = lo + (hi-lo)/2;
             
-            int rowIdx = mid / cols;
-            int colIdx = mid % cols;
+            int rIdx = mid / matrix[0].length;
+            int cIdx = mid % matrix[0].length;
             
-            if(matrix[rowIdx][colIdx] == target) return true;
-            else if(matrix[rowIdx][colIdx] < target) lo = mid + 1;
-            else hi = mid-1;
+            if(matrix[rIdx][cIdx] == target) return true;
+            else if(matrix[rIdx][cIdx] < target) lo = mid + 1;
+            else hi = mid -1;
         }
         
         return false;
