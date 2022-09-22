@@ -2,9 +2,9 @@ class Solution {
     public String reverseWords(String s) {
         StringBuilder sb = new StringBuilder("");
         
-        int i = s.length() -1;
+        int i = s.length()-1;
         
-        while(i >=0 && s.charAt(i) == ' ') {
+        while(i >= 0 && s.charAt(i) == ' ') {
             i--;
         }
         
@@ -16,7 +16,8 @@ class Solution {
             }
             
             for(int x=j+1;x<=i;x++) {
-                sb.append(s.charAt(x));
+                char ch = s.charAt(x);
+                sb.append(ch);
             }
             
             while(j >= 0 && s.charAt(j) == ' ') {
