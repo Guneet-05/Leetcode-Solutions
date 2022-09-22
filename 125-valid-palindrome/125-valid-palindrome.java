@@ -1,12 +1,12 @@
 class Solution {
     
     public boolean isLowerCase(char ch) {
-        if(ch >= 'a' && ch <= 'z') return true;
+        if(ch >='a' && ch <= 'z') return true;
         return false;
     }
     
     public boolean isUpperCase(char ch) {
-        if(ch >= 'A' && ch <= 'Z') return true;
+        if(ch >='A' && ch <= 'Z') return true;
         return false;
     }
     
@@ -15,11 +15,12 @@ class Solution {
         return false;
     }
     
-    public String convert(String s) {
-        StringBuilder sb = new StringBuilder("");
+    public String convert(String str) {
         
-        for(int i=0;i<s.length();i++) {
-            char ch = s.charAt(i);
+        StringBuilder sb = new StringBuilder("");
+            
+        for(int i=0;i<str.length();i++) {
+            char ch = str.charAt(i);
             if(isLowerCase(ch) || isUpperCase(ch) || isDigit(ch)) {
                 if(isUpperCase(ch)) {
                     ch = (char)(ch + 32);
