@@ -1,6 +1,6 @@
 class Solution {
     public int compress(char[] chars) {
-        int index = 0;
+        int idx = 0;
         int i = 0;
         
         while(i < chars.length) {
@@ -10,18 +10,19 @@ class Solution {
                 j++;
             }
             
-            chars[index++] = chars[i];
+            chars[idx++] = chars[i];
+            
             if(j - i > 1) {
-                String count = j - i + "";
-                for(int lv=0;lv<count.length();lv++) {
-                    char ch = count.charAt(lv);
-                    chars[index++] = ch;
+                String count = "" + (j-i);
+                for(int x=0;x<count.length();x++) {
+                    char ch = count.charAt(x);
+                    chars[idx++] = ch;
                 }
             }
             
             i = j;
         }
         
-        return index;
+        return idx;
     }
 }
