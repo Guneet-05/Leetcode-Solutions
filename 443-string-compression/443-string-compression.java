@@ -10,14 +10,17 @@ class Solution {
                 j++;
             }
             
-            chars[idx++] = chars[i];
+            chars[idx] = chars[i];
+            idx++;
             
-            if(j - i > 1) {
-                String count = "" + (j-i);
-                for(int x=0;x<count.length();x++) {
-                    char ch = count.charAt(x);
-                    chars[idx++] = ch;
-                }
+            String count = "" + (j-i);
+            
+            if(j-i > 1) {
+               for(int x=0;x<count.length();x++) {
+                   char ch = count.charAt(x);
+                   chars[idx] = ch;
+                   idx++;
+               } 
             }
             
             i = j;
