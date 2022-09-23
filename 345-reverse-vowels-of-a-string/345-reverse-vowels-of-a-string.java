@@ -1,6 +1,6 @@
 class Solution {
     
-    public static boolean isVowel(char ch) {
+    public boolean isVowel(char ch) {
         if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
             return true;
         } else if(ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
@@ -32,13 +32,13 @@ class Solution {
             lo++;
             hi--;
             
-             while(lo < s.length() && isVowel(s.charAt(lo)) == false) {
+              while(lo < s.length() && isVowel(s.charAt(lo)) == false) {
                 lo++;
-             }
+              }
         
-             while(hi >= 0 && isVowel(s.charAt(hi)) == false) {
-                 hi--;
-             }
+              while(hi >= 0 && isVowel(s.charAt(hi)) == false) {
+                  hi--;
+              }
         }
         
         return sb.toString();
