@@ -1,16 +1,16 @@
 class Solution {
     public String reverseWords(String s) {
-        StringBuilder sb = new StringBuilder("");
         int i = s.length()-1;
+        StringBuilder sb = new StringBuilder("");
         
         while(i >= 0 && s.charAt(i) == ' ') {
             i--;
         }
         
         while(i >= 0) {
-            int j = i -1;
+            int j = i-1;
             
-            while(j >=0 && s.charAt(j) != ' ') {
+            while(j >= 0 && s.charAt(j) != ' ') {
                 j--;
             }
             
@@ -18,7 +18,7 @@ class Solution {
                 sb.append(s.charAt(x));
             }
             
-            while(j >=0 && s.charAt(j) == ' ') {
+            while(j >= 0 && s.charAt(j) == ' ') {
                 j--;
             }
             
