@@ -1,12 +1,10 @@
 class Solution {
     public String reverseWords(String s) {
-        
+        int i = 0;
         StringBuilder sb = new StringBuilder("");
         
-        int i = 0;
-        
         while(i < s.length()) {
-            int j = i+1;
+            int j = i + 1;
             
             while(j < s.length() && s.charAt(j) != ' ') {
                 j++;
@@ -16,7 +14,7 @@ class Solution {
                 sb.append(s.charAt(x));
             }
             
-            i = j+1;
+            i = j + 1;
             if(i < s.length()) sb.append(' ');
         }
         
