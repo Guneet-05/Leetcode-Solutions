@@ -9,12 +9,12 @@ class Solution {
             return smallAns * smallAns;
         
         return x * smallAns * smallAns;
+        
     }
     
     public double myPow(double x, int n) {
         if(n < 0) {
-            n = -n;
-            return (double)(1.0 / power(x,n));
+            return 1.0 / power(x,-n);
         }
         
         return power(x,n);
