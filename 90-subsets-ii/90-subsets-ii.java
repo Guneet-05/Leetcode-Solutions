@@ -26,7 +26,7 @@ class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         ans = new ArrayList<>();
-        subsets(nums,0,new ArrayList<>(),true);
+        subsets(nums,0,new ArrayList<>(),false);
         return ans;
     }
 }
