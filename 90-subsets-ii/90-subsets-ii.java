@@ -1,17 +1,17 @@
 class Solution {
     
-    List<List<Integer>> ans;
+    List<List<Integer>> res;
     
     public void subsets(int[] nums, int idx,List<Integer> curr,boolean prev) {
         
         if(idx == nums.length) {
             List<Integer> copy = new ArrayList<>(curr);
-            ans.add(copy);
+            res.add(copy);
             return;
         }
         
         //no
-        subsets(nums,idx+1,curr,false);
+        subsets(nums,idx + 1,curr,false);
         
         //yes
         
@@ -21,12 +21,13 @@ class Solution {
         curr.add(nums[idx]);
         subsets(nums,idx + 1,curr,true);
         curr.remove(curr.size()-1);
+        
     }
     
     public List<List<Integer>> subsetsWithDup(int[] nums) {
+        res = new ArrayList<>();
         Arrays.sort(nums);
-        ans = new ArrayList<>();
         subsets(nums,0,new ArrayList<>(),false);
-        return ans;
+        return res;
     }
 }
