@@ -2,6 +2,8 @@ class Solution {
     
     List<List<Integer>> ans;
     
+    //if prev = true -> yes call for the previous element
+    //if prev = false -> no call for thr previous element
     public void subsets(int[] nums,int idx,List<Integer> curr,boolean prev) {
         
         if(idx == nums.length) {
@@ -14,7 +16,7 @@ class Solution {
         //no
         subsets(nums,idx + 1,curr,false);
         
-        if(idx > 0 && nums[idx] == nums[idx-1] && prev  == false)
+        if(idx > 0 && nums[idx] == nums[idx-1] && prev == false)
             return;
         
         //yes
@@ -25,8 +27,8 @@ class Solution {
     
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         ans = new ArrayList<>();
-        Arrays.sort(nums);
+        Arrays.sort(nums); // ascending order
         subsets(nums,0,new ArrayList<>(),false);
-        return ans;  
+        return ans;
     }
 }
