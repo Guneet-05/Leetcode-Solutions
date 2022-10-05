@@ -11,12 +11,12 @@ class Solution {
             lo++;
             hi--;
         }
+        
     }
     
     public boolean dfs(int[] matchsticks,int[] sides,int idx,int sideLength) {
-        if(idx == matchsticks.length) {
-            return true;
-        }
+        
+        if(idx == matchsticks.length) return true;
         
         for(int i=0;i<4;i++) {
             if(sides[i] + matchsticks[idx] <= sideLength) {
@@ -33,12 +33,13 @@ class Solution {
     public boolean makesquare(int[] matchsticks) {
         if(matchsticks.length == 0 || matchsticks == null) return false;
         
-        int perimeter = 0;
-        for(int val : matchsticks) perimeter += val;
-        if(perimeter % 4 != 0) return false;
+        int p = 0;
         
+        for(int val : matchsticks) p += val;
+        if(p % 4 != 0) return false;
+        
+        int sideLength = p/4;
         int[] sides = new int[4];
-        int sideLength = perimeter/4;
         Arrays.sort(matchsticks);
         reverse(matchsticks);
         
