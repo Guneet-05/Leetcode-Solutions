@@ -1,7 +1,11 @@
 class Solution {
     int count;
     public void solve(int n,int idx,boolean[] vis) {
-        if(idx > n) count++;
+        if(idx > n) {
+            count++;
+            return;
+        }
+        
         for(int i=1;i<=n;i++) {
             if(vis[i] == false && (idx % i == 0 || i%idx == 0)) {
                 vis[i] = true;
