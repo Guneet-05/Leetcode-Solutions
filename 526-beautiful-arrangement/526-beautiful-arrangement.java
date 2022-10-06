@@ -9,12 +9,12 @@ class Solution {
             return;
         }
         
-        for(int i=1;i<=n;i++) {
-            if(vis[i] == false && (i % idx == 0 || idx % i == 0)) {
-                vis[i] = true;
+        for(int num=1;num<=n;num++) {
+            if(vis[num] == false && (num % idx == 0 || idx % num == 0)) {
+                vis[num] = true;
                 permutations(n,idx + 1,vis);
-                vis[i] = false;
-            }
+                vis[num] = false;
+            } 
         }
     }
     
